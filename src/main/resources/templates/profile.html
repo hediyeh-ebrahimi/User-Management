@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Login Page</title>
+    <title>Profile</title>
     <link rel="icon" type="image/png" th:href="@{/images/icons/favicon.ico}"/>
     <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" th:href="@{/vendor/bootstrap/css/bootstrap.min.css}">
@@ -29,13 +29,11 @@
 <div class="limiter">
     <div class="container-login100">
         <div class="wrap-login100">
-            <form class="login100-form validate-form" th:action="@{loginSubmit}" th:object="${user}" th:method="post">
+            <form class="login100-form validate-form" th:action="@{signUpSubmit}" th:object="${user}" th:method="post"
+                  style="padding: 23px 55px 55px 55px !important; ">
 					<span class="login100-form-title p-b-43">
-						Login to continue
+						SignUp to continue
 					</span>
-                <div>
-                    <p th:text="${success}" style="color: green;"></p>
-                </div>
                 <div>
                     <table>
                         <tr th:each="error: ${error}">
@@ -43,53 +41,45 @@
                         </tr>
                     </table>
                 </div>
-                <div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
-                    <input class="input100" type="text" name="email" th:field="*{email}">
+                <div class="wrap-input100 validate-input" data-validate="First Name is required">
+                    <input class="input100" type="text" name="firstName" th:field="*{firstName}" required>
+                    <span class="focus-input100"></span>
+                    <span class="label-input100">firstName</span>
+                </div>
+
+                <div class="wrap-input100 validate-input" data-validate="Last Name is required">
+                    <input class="input100" type="text" name="lastName" th:field="*{lastName}" required>
+                    <span class="focus-input100"></span>
+                    <span class="label-input100">lastName</span>
+                </div>
+
+                <div class="wrap-input100 validate-input" data-validate="Phone Number is required">
+                    <input class="input100" type="text" name="phoneNumber" th:field="*{phoneNumber}" required>
+                    <span class="focus-input100"></span>
+                    <span class="label-input100">phoneNumber</span>
+                </div>
+
+
+                <div class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
+                    <input class="input100" type="text" name="email" th:field="*{email}" required>
                     <span class="focus-input100"></span>
                     <span class="label-input100">Email</span>
                 </div>
-<!--                or sign up using-->
+
 
                 <div class="wrap-input100 validate-input" data-validate="Password is required">
-                    <input class="input100" type="password" name="password" th:field="*{password}">
+                    <input class="input100" type="password" name="password" th:field="*{password}" required>
                     <span class="focus-input100"></span>
                     <span class="label-input100">Password</span>
                 </div>
 
-                <div class="flex-sb-m w-full p-t-3 p-b-32">
-                    <div>
-                        <a href="#" class="txt1">
-                            Forgot Password?
-                        </a>
-                    </div>
-                </div>
-
-
                 <div class="container-login100-form-btn">
                     <button class="login100-form-btn">
-                        Login
+                        SignUp
                     </button>
                 </div>
                 <br/>
-                <div class="container-login100-form-btn">
-                    <a th:href="@{signUp}" class="login100-form-btn">signUp</a>
-                </div>
 
-                <div class="text-center p-t-46 p-b-20">
-						<span class="txt2">
-							or sign up using
-						</span>
-                </div>
-
-                <div class="login100-form-social flex-c-m">
-                    <a href="#" class="login100-form-social-item flex-c-m bg1 m-r-5">
-                        <i class="fa fa-facebook-f" aria-hidden="true"></i>
-                    </a>
-
-                    <a href="#" class="login100-form-social-item flex-c-m bg2 m-r-5">
-                        <i class="fa fa-twitter" aria-hidden="true"></i>
-                    </a>
-                </div>
             </form>
 
 
@@ -98,9 +88,6 @@
         </div>
     </div>
 </div>
-
-
-
 
 
 <!--===============================================================================================-->

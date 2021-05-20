@@ -3,7 +3,7 @@ package com.tutorial.userManagement.model;
 import javax.persistence.*;
 
 @Entity(name = "user")
-@Table(name = "user")
+@Table(name = "user_management")
 public class User {
 
     @Id
@@ -24,7 +24,7 @@ public class User {
     @Column(name = "email",columnDefinition = "nvarchar2(30)")
     private String email;
 
-    @Column(name = "password",columnDefinition = "nvarchar2(32)")
+    @Column(name = "password",columnDefinition = "nvarchar2(60)")
     private String password;
 
     public User() {
