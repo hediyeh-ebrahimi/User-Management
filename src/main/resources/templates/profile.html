@@ -3,84 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <title>Profile</title>
-    <link rel="icon" type="image/png" th:href="@{/images/icons/favicon.ico}"/>
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" th:href="@{/vendor/bootstrap/css/bootstrap.min.css}">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" th:href="@{/fonts/font-awesome-4.7.0/css/font-awesome.min.css}">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" th:href="@{/fonts/Linearicons-Free-v1.0.0/icon-font.min.css}">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" th:href="@{/vendor/animate/animate.css}">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" th:href="@{/vendor/css-hamburgers/hamburgers.min.css}">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" th:href="@{/vendor/animsition/css/animsition.min.css}">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" th:href="@{/vendor/select2/select2.min.css}">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" th:href="@{/vendor/daterangepicker/daterangepicker.css}">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" th:href="@{/css/util.css}">
-    <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}">
+    <div th:replace="/header :: header"> </div>
+
 </head>
 <body style="background-color: #666666;">
 
 <div class="limiter">
     <div class="container-login100">
         <div class="wrap-login100">
-            <form class="login100-form validate-form" th:action="@{signUpSubmit}" th:object="${user}" th:method="post"
-                  style="padding: 23px 55px 55px 55px !important; ">
+            <div class="login100-form validate-form" style="padding: 23px 55px 55px 55px !important; ">
 					<span class="login100-form-title p-b-43">
-						SignUp to continue
+						Profile
 					</span>
-                <div>
-                    <table>
-                        <tr th:each="error: ${error}">
-                            <td><p style="color: red;" th:text="${error}"></p></td>
-                        </tr>
-                    </table>
+                <div class="alert">
+                    <p th:text="${error}" style="color: red;"></p>
+                    <p th:text="${success}" style="color: green;"></p>
                 </div>
-                <div class="wrap-input100 validate-input" data-validate="First Name is required">
-                    <input class="input100" type="text" name="firstName" th:field="*{firstName}" required>
-                    <span class="focus-input100"></span>
-                    <span class="label-input100">firstName</span>
+                <div style=" padding: 10px 20px 22px;">
+                    <label>First Name:
+                        <span th:text="${user.firstName}"></span>
+                    </label>
                 </div>
-
-                <div class="wrap-input100 validate-input" data-validate="Last Name is required">
-                    <input class="input100" type="text" name="lastName" th:field="*{lastName}" required>
-                    <span class="focus-input100"></span>
-                    <span class="label-input100">lastName</span>
+                <div style=" padding: 10px 20px 22px;">
+                    <label>Last Name:
+                        <span th:text="${user.lastName}"></span>
+                    </label>
                 </div>
 
-                <div class="wrap-input100 validate-input" data-validate="Phone Number is required">
-                    <input class="input100" type="text" name="phoneNumber" th:field="*{phoneNumber}" required>
-                    <span class="focus-input100"></span>
-                    <span class="label-input100">phoneNumber</span>
+                <div style=" padding: 10px 20px 22px;">
+                    <label>Phone Number:
+                        <span th:text="${user.phoneNumber}"></span>
+                    </label>
                 </div>
 
-
-                <div class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
-                    <input class="input100" type="text" name="email" th:field="*{email}" required>
-                    <span class="focus-input100"></span>
-                    <span class="label-input100">Email</span>
+                <div style=" padding: 10px 20px 22px;">
+                    <label>Email:
+                        <span th:text="${user.email}"></span>
+                    </label>
+                    <form th:action="@{resetPassword}" th:object="${user}" th:method="post"
+                          style="padding: 23px 55px 55px 55px !important; ">
+                        <input name="email" th:field="*{email}" hidden>
+                        <input name="userId" th:field="*{userId}" hidden>
+                        <div class="container-login100-form-btn">
+                            <button class="login100-form-btn">
+                                Reset Password
+                            </button>
+                        </div>
+                    </form>
                 </div>
 
-
-                <div class="wrap-input100 validate-input" data-validate="Password is required">
-                    <input class="input100" type="password" name="password" th:field="*{password}" required>
-                    <span class="focus-input100"></span>
-                    <span class="label-input100">Password</span>
-                </div>
-
-                <div class="container-login100-form-btn">
-                    <button class="login100-form-btn">
-                        SignUp
-                    </button>
-                </div>
                 <br/>
 
-            </form>
+            </div>
 
 
             <div class="login100-more" style="background-image: url('images/bg-01.jpg');">
@@ -88,24 +62,7 @@
         </div>
     </div>
 </div>
-
-
-<!--===============================================================================================-->
-<script th:src="@{/vendor/jquery/jquery-3.2.1.min.js}"></script>
-<!--===============================================================================================-->
-<script th:src="@{/vendor/animsition/js/animsition.min.js}"></script>
-<!--===============================================================================================-->
-<script th:src="@{/vendor/bootstrap/js/popper.js}"></script>
-<script th:src="@{/vendor/bootstrap/js/bootstrap.min.js}"></script>
-<!--===============================================================================================-->
-<script th:src="@{/vendor/select2/select2.min.js}"></script>
-<!--===============================================================================================-->
-<script th:src="@{/vendor/daterangepicker/moment.min.js}"></script>
-<script th:src="@{/vendor/daterangepicker/daterangepicker.js}"></script>
-<!--===============================================================================================-->
-<script th:src="@{/vendor/countdowntime/countdowntime.js}"></script>
-<!--===============================================================================================-->
-<script th:src="@{/js/main.js}"></script>
+<div th:replace="/footer :: footer"> </div>
 
 </body>
 </html>

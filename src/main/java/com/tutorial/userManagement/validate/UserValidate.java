@@ -5,7 +5,6 @@ import com.tutorial.userManagement.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Component;
-import org.springframework.validation.annotation.Validated;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -50,11 +49,13 @@ public class UserValidate {
         if (!patternEmail.matcher(user.getEmail().trim()).matches()) {
             error.add("Email is not valid.");
         } else {
-            String password = BCrypt.hashpw(user.getPassword().trim(), BCrypt.gensalt());
             User userExist = this.userService.findByEmail(user.getEmail().trim());
-            boolean checkpw = BCrypt.checkpw(user.getPassword().trim(), userExist.getPassword());
-            if (!checkpw) {
-                error.add("Email or Password is wrong.");
+            if(userExist == null ){
+                error.add("Email not exist");
+            }else {
+                if (!BCrypt.checkpw(user.getPassword(), userExist.getPassword())) {
+                    error.add("Email or Password is wrong.");
+                }
             }
         }
         return error;

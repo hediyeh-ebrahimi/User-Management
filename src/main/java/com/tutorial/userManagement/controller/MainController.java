@@ -42,6 +42,11 @@ public class MainController {
             model.addAttribute("error", userValidate);
             return "login";
         } else {
+            System.out.println(this.userService.findByEmail(user.getEmail()));
+            System.out.println(user.getEmail());
+            System.out.println(user.getFirstName());
+            System.out.println(user.getLastName());
+            model.addAttribute("user",this.userService.findByEmail(user.getEmail()));
             return "profile";
         }
     }
@@ -65,5 +70,19 @@ public class MainController {
 //            this.emailService.sendSimpleMessage("sarait405@gmail.com", "testtttttttttt", "tesyyyyyyyyyyyyyyyy");
         }
 
+    }
+
+    @RequestMapping(value = "/resetPassword",method = RequestMethod.POST)
+    public Object resetPassword(@ModelAttribute User user,Model model){
+        try {
+            user = this.userService.findByEmail(user.getEmail());
+            user = this.userService.resetPassword(user);
+            model.addAttribute("user",user);
+            model.addAttribute("success", "Password reset Successfully");
+        } catch (MessagingException e) {
+            model.addAttribute("error", "Password reset error");
+            e.printStackTrace();
+        }
+        return "profile";
     }
 }
