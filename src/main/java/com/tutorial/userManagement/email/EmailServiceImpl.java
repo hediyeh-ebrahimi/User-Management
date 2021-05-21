@@ -29,8 +29,8 @@ public class EmailServiceImpl {
         JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
         mailSender.setHost("smtp.gmail.com");
         mailSender.setPort(587);
-        mailSender.setUsername("hediye853");
-        mailSender.setPassword("hediye1371");
+        mailSender.setUsername("**");
+        mailSender.setPassword("**");
         Properties properties = new Properties();
         properties.setProperty("mail.smtp.auth", "true");
         properties.setProperty("mail.smtp.starttls.enable", "true");
